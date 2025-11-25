@@ -53,21 +53,18 @@ If these files are missing during the first run, they are automatically created 
 
 ### 🖥 Execution Steps
 
-1. **Download or copy the project folder**, ensuring `main.py` and JSON files (if present) stay together.
+1. **Download or copy the project folder**, ensuring `main.py` and JSON files stay together.
 
 2. **Open Terminal or Command Prompt**
    - Windows: `Win + R → cmd → Enter`
-   - Linux/Mac: Open Terminal
-
+   
 3. **Navigate to the project directory**
 
-cd path/to/project
+ `cd path/to/project`
 
 4. **Run the program**
 
-python main.py
-
-*(Use `python3 main.py` if your system requires it.)*
+ `python main.py`
 
 5. **Initial Admin Setup**
 - On the first launch, if no admin exists, the system will prompt you to create one.
