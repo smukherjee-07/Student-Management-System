@@ -1,74 +1,85 @@
-# 🎓 STUDENT MANAGEMENT SYSTEM (SMS)
+# 🎓 Student Management System(SMS)
 
-## 📑 Synopsis
+## 📌 Overview
 
-The *Student Management System* is a console-based application designed to streamline and automate academic record management in an educational institution. It replaces traditional paper-based entries with a structured, persistent digital storage system using *Python* and *JSON*.
+The **Student Management System (SMS)** is a console-based Python application designed to store, manage, and update student records efficiently. It replaces manual record-keeping with persistent digital storage using **JSON**, while enforcing secure access through role-based authentication.
 
-The system features automatic database initialization during the first execution, a clear data flow architecture, and *Role-Based Access Control (RBAC)* to distinguish administrative privileges from standard user operations.
+The system supports student enrollment, attendance logging, marks entry, and controlled administrative operations to ensure data integrity across sessions.
 
-## ⚙ System Architecture
+## 🏗 System Design
 
-The application follows a modular structure where each functional unit is responsible for a specific task. All operations adhere to the pipeline:
+The program follows a modular structure allowing scalability and easy maintenance.
 
-*User Input → Data Validation → In-Memory Processing → JSON Data Storage*
+## Execution flow:
+User Input → Validation → Processing → Permanent Storage (JSON)
 
-### 1. Data Persistence Layer
+### 🗂 Data Storage
 
-Two JSON files store all essential data permanently:
+The system uses two JSON files:
 
-- **users.json** — Contains authentication credentials and user roles.
-- **students.json** — Stores student profiles, subjects, marks, and attendance in a nested dictionary structure.
+| File Name | Purpose |
+|-----------|---------|
+| `users.json` | Stores login credentials and role permissions |
+| `students.json` | Contains personal information, subjects, marks, and attendance |
 
-This approach ensures data reliability across multiple sessions.
+If these files are missing during the first run, they are automatically created by the system.
 
-### 2. Core Functional Modules
+## 🧩 Core Functional Components
 
-#### A. Database Handlers
+### 🔐 Authentication & Roles
 
-- **load_data(filename)**  
-  Checks for file existence before attempting to read it. If the file is missing, it safely returns an empty dictionary, preventing runtime errors.
+- System ensures one admin exists — if not, it prompts one to be created.
+- Access Levels:
+  - **Admin:** Full permissions including adding, viewing, modifying, and deleting data.
+  - **User:** Limited to view access and academic updates.
 
-- **save_data(filename, data)**  
-  Writes in-memory data into JSON files with indentation for readability.
+### 🎓 Student Management Features
 
-#### B. Authentication System
+- **Enroll Student:** Adds new student details with validation and prevents duplicate registration numbers.
+- **View Student Records:** Displays all stored students or fetches a specific record via registration number lookup.
+- **Delete Student:** Admin-only action allowing secure record removal.
 
-- **ensure_admin_exists(users)**  
-  During the first run, the system verifies whether an admin account exists. If not, it prompts the user to create one before proceeding.
+### 📚 Academic Operations
 
-- **login(users)**  
-  Validates user credentials and returns the corresponding role (Admin/User).
+- **Add Marks:** Records subject-wise marks with input validation.
+- **Mark Attendance:** Logs attendance with timestamps automatically.
 
-#### C. Student Operations (CRUD)
+## 🚀 How to Run
 
-- **enroll_student()**  
-  Adds new student records with proper validation for registration numbers and prevents duplicate entries. Subjects are added dynamically based on user input.
+### 🧾 Requirements
 
-- **view_students()**  
-  Displays all student records or searches specific entries using Registration ID through a linear lookup method.
+- Python **3.8 or higher**
+- No external modules required (uses Python Standard Library only)
 
-- **delete_student()**  
-  Restricted to admin users. Securely removes student records from the database.
+### 🖥 Execution Steps
 
-#### D. Academic Module
+1. **Download or copy the project folder**, ensuring `main.py` and JSON files (if present) stay together.
 
-- **add_marks()**  
-  Updates student marks with strict validation to avoid incorrect or invalid entries.
+2. **Open Terminal or Command Prompt**
+   - Windows: `Win + R → cmd → Enter`
+   - Linux/Mac: Open Terminal
 
-- **mark_attendance()**  
-  Records attendance along with timestamps to maintain an accurate academic log.
+3. **Navigate to the project directory**
 
-## 🚀 Execution Instructions
+cd path/to/project
 
-### Prerequisites
+4. **Run the program**
 
-- Python 3.8 or higher  
-- No external libraries required (Standard Library only)
+python main.py
 
-### How to Run
+*(Use `python3 main.py` if your system requires it.)*
 
-1. Open a terminal inside the project directory.  
-2. Execute the command:
-   ```bash
-   python main.py
-3. On the first run, if the database files are missing, the system will automatically generate them and prompt for the creation of an initial administrator account..
+5. **Initial Admin Setup**
+- On the first launch, if no admin exists, the system will prompt you to create one.
+
+6. **Login**
+- Enter valid credentials to access the system features.
+
+7. **Follow the on-screen menu**
+- Enroll students
+- Add marks
+- Record attendance
+- View or delete records (admin only)
+
+8. **Exit**
+- All changes remain stored in JSON files for future access.
